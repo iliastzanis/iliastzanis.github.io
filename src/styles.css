@@ -226,7 +226,8 @@ hr{
 .timeline-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 0px 170px 0px 170px;
 }
 
 .detail {
