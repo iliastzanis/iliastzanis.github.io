@@ -1,0 +1,411 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+section{
+    background-color: white;
+}
+
+.hero{
+    background-color: #1c1d25;
+    height: 100vh;
+    color: white;
+    font-size: 40px;
+}
+
+footer{
+
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 80px;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+ul{
+    display: flex;
+    list-style-type: none;
+    width: 750px;
+    justify-content: space-around;
+    font-size: 30px;
+}
+
+li{
+    text-decoration: none;
+
+}
+
+h1{
+    font-size: 90px;
+    margin: 0;
+}
+
+
+h2{
+    font-size: 50px;
+}
+
+p{
+    margin: 0;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.sub-text{
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.hero-area{
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-text{
+    margin-left: 80px;
+    margin-bottom: 200px;
+}
+
+.button{
+    width: 200px;
+    height: 55px;
+    border-radius: 30px;
+    background-color: coral;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 300;
+    padding-top: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: #ef744b;
+}
+
+.button:active {
+    background-color: #A9A9A9;
+    color: #808080;
+}
+
+.socials{
+    padding-bottom: 200px;
+}
+
+.logo{
+    height: 100px;
+    margin: 10px;
+}
+
+.social{
+    margin: 20px;
+}
+
+.sub-section{
+    display: flex;
+    justify-content: space-around;
+    padding: 80px;
+}
+
+.sub-section-alternative{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 0px 80px 0px;
+    margin-top: 0px;
+}
+
+.headshot{
+    width: 300px;
+    border-radius: 50%;
+}
+
+.headshot-container{
+    display: flex;
+    align-items: center;
+}
+
+.project-card{
+    width: 300px;
+    height: 500px;
+    box-shadow: 5px 5px 20px rgb(197, 195, 195);
+    margin: 10px 10px 0px 10px;
+    padding: 10px 10px 0px 10px;
+}
+
+.project-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width: 1000px){
+    .project-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .timeline-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .sub-section{
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+}
+
+.project-image{
+    margin-top: 25px;
+    width: 250px;
+    border-radius: 125px;
+}
+
+hr{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.project-link{
+    text-decoration: none;
+    color: #ef744b;
+}
+
+.a-nav-bar{
+    text-decoration: none;
+    color: white;
+}
+
+.hamburger{
+    display: none;
+}
+
+.hamburger:focus{
+    outline: 0;
+}
+
+@media only screen and (max-width: 1000px){
+    .hamburger{
+        display: block;
+        border: 0;
+        background-color: transparent;
+        color: white;
+        font-size: 30px;
+        margin: 20px;
+        align-self: flex-end;
+    }
+
+    ul{
+        display: none;
+        background-color: #2b2c38;
+        margin: 0px;
+    }
+
+    ul.show {
+        display: block;
+    }
+
+    nav{
+        display: flex;
+        flex-direction: column-reverse;
+        background-color: #2b2c38;
+    }
+
+    .logo{
+        display: none;
+    }
+}
+
+/*Education + experience section*/
+.timeline-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.detail {
+	padding: 10px 80px 80px 80px;
+}
+
+.timeline-block {
+	position: relative;
+	padding-left: 30px;
+}
+
+.timeline-block:not(:last-of-type) {
+	margin-bottom: 16px;	
+}
+
+.timeline-block h1 {
+	font-size: 30px;
+	margin: 5px 0;
+	transition: all 0.3s;
+}
+
+.timeline-block a{
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+	margin: 5px 0;
+	transition: all 0.3s;
+}
+
+.timeline-block p {
+	font-size: 20px;
+	margin: 5px 0;
+}
+
+.timeline-block time {
+	font-size: 20px;
+	color: #737373;
+}
+
+.timeline-block::before {
+	position: absolute;
+	content: '';
+	width: 15px;
+	height: 15px;
+	background-color: white;
+	border: 3px solid  #14253e;
+	border-radius: 50%;
+	left: -10px;
+	top: -5px;
+}
+.timeline-block::after {
+	position: absolute;
+	content: '';
+	width: 3px;
+	height: 100%;
+	background-color:  #14253e;
+	left: -1px;
+	top: 13px;
+}
+.timeline-block:hover h1 {
+    cursor: default;
+	color: coral;
+}
+
+.timeline-block:hover a {
+	color: coral;
+}
+
+.timeline-block:hover::before {
+	animation: circle 1.2s infinite;
+}
+
+/* Programming skills section */
+.skill-details{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.bar{
+    position: relative;
+    border: 1.5px solid #ef744b;
+    border-radius: 2px;
+}
+.bar div{
+    position: relative;
+    width: 0;
+    height: 9px;
+    background-color: #ef744b;
+}
+
+.skills:not(:last-child){
+    margin-bottom: 30px;
+}
+
+#nine-bar{
+    animation: nine-fill 2s forwards;
+}
+@keyframes nine-fill{
+    100%{
+        width: 90%;
+    }
+}
+
+#eight-bar{
+    animation: eight-fill 2s forwards;
+}
+@keyframes eight-fill{
+    100%{
+        width: 80%;
+    }
+}
+
+#seven-bar{
+    animation: seven-fill 2s forwards;
+}
+@keyframes seven-fill{
+    100%{
+        width: 70%;
+    }
+}
+
+#six-bar{
+    animation: six-fill 2s forwards;
+}
+@keyframes six-fill{
+    100%{
+        width: 60%;
+    }
+}
+
+#five-bar{
+    animation: five-fill 2s forwards;
+}
+@keyframes five-fill{
+    100%{
+        width: 50%;
+    }
+}
+
+@keyframes circle {
+    0% {
+      box-shadow: 0 0 0 0px coral;
+    }
+    100% {
+      box-shadow: 0 0 0 5px rgb(255, 185, 160);
+    }
+}
+
+/*Form section*/
+form { 
+    max-width:420px; 
+    margin:50px auto; 
+}
+
+.email-address{
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    outline: 0;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 13px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    resize: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    outline: 0;
+}
