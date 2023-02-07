@@ -383,6 +383,11 @@ form {
     margin:50px auto; 
 }
 
+.a-mail{
+    text-decoration: none;
+    color: coral;
+}
+
 .email-address{
     width: 100%;
     padding: 13px;
