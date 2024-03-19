@@ -1,6 +1,6 @@
 # Ilias Tzanis - Professional Portfolio
 
-Welcome to the official repository for my professional portfolio website. This digital platform is carefully crafted to exhibit my career achievements, technical proficiencies, and project involvements.
+Welcome to the official repository for my professional portfolio website. This website is carefully crafted to exhibit my career achievements, technical proficiencies, and project involvements.
 
 ## Technology Stack
 - **HTML**: The backbone of the website, providing structure.
