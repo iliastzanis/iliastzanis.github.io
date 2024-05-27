@@ -234,7 +234,7 @@ img {
 
 /*====== LAYOUT ===========*/
 .bd-container {
-  max-width: 968px;
+  max-width: 980px;
   width: calc(100% - 3rem);
   margin-left: var(--mb-3);
   margin-right: var(--mb-3);
@@ -269,7 +269,7 @@ img {
     position: fixed;
     bottom: -100%;
     left: 0;
-    width: 300px;
+    width: 100%;
     padding: 2rem 1.5rem;
     background-color: var(--body-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
