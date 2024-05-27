@@ -234,7 +234,7 @@ img {
 
 /*====== LAYOUT ===========*/
 .bd-container {
-  max-width: 980px;
+  max-width: 968px;
   width: calc(100% - 3rem);
   margin-left: var(--mb-3);
   margin-right: var(--mb-3);
