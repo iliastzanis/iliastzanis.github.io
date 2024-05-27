@@ -269,7 +269,7 @@ img {
     position: fixed;
     bottom: -100%;
     left: 0;
-    width: 100%;
+    width: 300px;
     padding: 2rem 1.5rem;
     background-color: var(--body-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
