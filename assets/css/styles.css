@@ -413,7 +413,7 @@ img {
 
 /*====== PROFILE ===========*/
 .profile__description {
-  text-align: center;
+  text-align: initial;
 }
 
 /*====== EDUCATION AND EXPRIENCE ===========*/
@@ -467,11 +467,6 @@ img {
 }
 
 /*====== SKILLS AND LANGUAGES ===========*/
-.skills__content,
-.languages__content {
-  grid-template-columns: repeat(2, 1fr);
-}
-
 .skills__content,
 .languages__content {
   gap: 0;
