@@ -47,7 +47,7 @@ html {
 }
 
 /*====== VARIABLES DARK THEME ===========*/
-body.dark-theme{
+body.dark-theme {
   --title-color: #f2f2f2;
   --text-color: #bfbfbf;
   --container-color: #212121;
@@ -56,7 +56,7 @@ body.dark-theme{
 }
 
 /*====== BUTTON DARK/LIGHT ===========*/
-.change-theme{
+.change-theme {
   position: absolute;
   right: 0;
   top: 2.2rem;
@@ -66,22 +66,22 @@ body.dark-theme{
   cursor: pointer;
 }
 
-.change-theme:hover{
+.change-theme:hover {
   color: var(--title-color);
 }
 
 /*====== FONT SIZE VARIABLES TO SCALE CV ===========*/
-body.scale-cv{
-  --h1-font-size: .938rem;
-  --h2-font-size: .938rem;
-  --h3-font-size: .875rem;
-  --normal-font-size: .813rem;
-  --small-font-size: .75rem;
-  --smaller-font-size: .688rem;
+body.scale-cv {
+  --h1-font-size: 0.938rem;
+  --h2-font-size: 0.938rem;
+  --h3-font-size: 0.875rem;
+  --normal-font-size: 0.813rem;
+  --small-font-size: 0.75rem;
+  --smaller-font-size: 0.688rem;
 }
 
 /*====== GENERATE PDF BUTTON ===========*/
-.generate-pdf{
+.generate-pdf {
   display: none;
   position: absolute;
   top: 2.2rem;
@@ -91,93 +91,92 @@ body.scale-cv{
   cursor: pointer;
 }
 
-.generate-pdf:hover{
+.generate-pdf:hover {
   color: var(--title-color);
 }
 
 /*====== CLASSES MODIFIED TO REDUCE SIZE AND PRINT A4 SHEET ===========*/
 .scale-cv .change-theme,
-.scale-cv .generate-pdf{
+.scale-cv .generate-pdf {
   display: none;
 }
 
-.scale-cv .bd-container{
+.scale-cv .bd-container {
   max-width: 850px;
 }
 
-.scale-cv .section{
-  padding: 1.5rem 0 .80rem;
+.scale-cv .section {
+  padding: 1.5rem 0 0.8rem;
 }
 
-.scale-cv .section-title{
-  margin-bottom: .75rem;
+.scale-cv .section-title {
+  margin-bottom: 0.75rem;
 }
 
 .scale-cv .resume__left,
-.scale-cv.resume__right{
+.scale-cv.resume__right {
   padding: 0 1rem;
 }
 
-.scale-cv .home__img{
+.scale-cv .home__img {
   width: 90px;
   height: 90px;
 }
 
-.scale-cv .home__container{
+.scale-cv .home__container {
   gap: 1.5rem;
 }
 
-.scale-cv .home__data{
-  gap: .25rem;
+.scale-cv .home__data {
+  gap: 0.25rem;
 }
 
 .scale-cv .home__address,
-.scale-cv .social__container{
-  gap: .75rem;
+.scale-cv .social__container {
+  gap: 0.75rem;
 }
 
 .scale-cv .home__icon,
 .scale-cv .social__icon,
-.scale-cv .interests__icon{
+.scale-cv .interests__icon {
   font-size: 1rem;
-
 }
 
 .scale-cv .education__container,
 .scale-cv .experience__container,
-.scale-cv .project__container{
+.scale-cv .project__container {
   gap: 1rem;
 }
 
 .scale-cv .education__time,
-.scale-cv .experience__time{
-  padding-right: .5rem;
+.scale-cv .experience__time {
+  padding-right: 0.5rem;
 }
 
 .scale-cv .education__rounder,
-.scale-cv .experience__rounder{
+.scale-cv .experience__rounder {
   width: 11px;
   height: 11px;
-  margin-top: .22rem;
+  margin-top: 0.22rem;
 }
 
 .scale-cv .education__line,
-.scale-cv .experience__line{
+.scale-cv .experience__line {
   width: 1px;
   height: 110%;
-  transform: translate(5px,0);
+  transform: translate(5px, 0);
 }
 
 .scale-cv .education__data,
-.scale-cv .experience__data{
-  gap: .25rem;
+.scale-cv .experience__data {
+  gap: 0.25rem;
 }
 
-.scale-cv .skills__name{
+.scale-cv .skills__name {
   margin-bottom: var(--mb-2);
 }
 
-.scale-cv .interests__container{
+.scale-cv .interests__container {
   column-gap: 2.5rem;
 }
 
@@ -480,7 +479,7 @@ img {
   font-size: medium;
 }
 
-.skills__circle,
+.skills__circle, 
 .languages__circle {
   display: inline-block;
   width: 5px;
@@ -488,6 +487,7 @@ img {
   background-color: var(--text-color);
   border-radius: 50%;
   margin-right: 0.75rem;
+  padding: 3px;
 }
 
 /*====== PROJECTS ===========*/
@@ -608,7 +608,7 @@ img {
     padding: 0 1.6rem;
   }
 
-  .generate-pdf{
+  .generate-pdf {
     display: inline-block;
   }
 
@@ -633,7 +633,7 @@ img {
     grid-template-columns: repeat(3, max-content);
     column-gap: 3.5rem;
   }
-  .interests__container{
+  .interests__container {
     grid-template-columns: repeat(6, max-content);
     column-gap: 2.2rem;
   }
