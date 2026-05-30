@@ -15,7 +15,9 @@ let scrollEndTimer = null;
 /* ── Scroll-to-top progress ring setup ── */
 
 const RING_R = 19;
-const RING_CIRCUMFERENCE = 2 * Math.PI * RING_R;
+const RING_CIRCUMFERENCE = 2 * Math.PI * RING_R; // ≈ 119.38
+
+let ringFill = null;
 
 if (scrollTopButton) {
   const svgNS = "http://www.w3.org/2000/svg";
@@ -35,13 +37,17 @@ if (scrollTopButton) {
   fill.setAttribute("cx", "22");
   fill.setAttribute("cy", "22");
   fill.setAttribute("r", String(RING_R));
-  fill.style.strokeDasharray = String(RING_CIRCUMFERENCE);
-  fill.style.strokeDashoffset = String(RING_CIRCUMFERENCE);
+  fill.setAttribute("stroke-dasharray", RING_CIRCUMFERENCE);
+  fill.setAttribute("stroke-dashoffset", RING_CIRCUMFERENCE);
 
   svg.appendChild(track);
   svg.appendChild(fill);
   scrollTopButton.prepend(svg);
+
+  ringFill = fill;
 }
+
+let scrollRafPending = false;
 
 function updateScrollTopButton() {
   if (!scrollTopButton) return;
@@ -52,13 +58,21 @@ function updateScrollTopButton() {
 
   scrollTopButton.classList.toggle("show-scroll", scrollY >= 520);
 
-  const fill = scrollTopButton.querySelector(".ring-fill");
-  if (fill) {
-    fill.style.strokeDashoffset = String(RING_CIRCUMFERENCE * (1 - progress));
+  if (ringFill) {
+    ringFill.setAttribute("stroke-dashoffset", RING_CIRCUMFERENCE * (1 - progress));
   }
 }
 
-window.addEventListener("scroll", updateScrollTopButton, { passive: true });
+function onScroll() {
+  if (scrollRafPending) return;
+  scrollRafPending = true;
+  requestAnimationFrame(() => {
+    updateScrollTopButton();
+    scrollRafPending = false;
+  });
+}
+
+window.addEventListener("scroll", onScroll, { passive: true });
 window.addEventListener("load", updateScrollTopButton);
 
 /* ── Mobile menu ── */
@@ -68,7 +82,7 @@ function closeMenu() {
   navMenu.classList.remove("show-menu");
   document.body.classList.remove("menu-open");
   navToggle.setAttribute("aria-expanded", "false");
-  
+
   const toggleIcon = navToggle.querySelector("i");
   if (toggleIcon) {
     toggleIcon.className = "bx bx-menu";
@@ -80,7 +94,7 @@ if (navToggle && navMenu) {
     const isOpen = navMenu.classList.toggle("show-menu");
     document.body.classList.toggle("menu-open", isOpen);
     navToggle.setAttribute("aria-expanded", String(isOpen));
-    
+
     const toggleIcon = navToggle.querySelector("i");
     if (toggleIcon) {
       toggleIcon.className = isOpen ? "bx bx-x" : "bx bx-menu";
