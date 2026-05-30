@@ -12,12 +12,67 @@ if (footerYear) footerYear.textContent = new Date().getFullYear();
 let isNavigating = false;
 let scrollEndTimer = null;
 
+/* ── Scroll-to-top progress ring setup ── */
+
+const RING_R = 19;
+const RING_CIRCUMFERENCE = 2 * Math.PI * RING_R;
+
+if (scrollTopButton) {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("class", "progress-ring");
+  svg.setAttribute("viewBox", "0 0 44 44");
+  svg.setAttribute("aria-hidden", "true");
+
+  const track = document.createElementNS(svgNS, "circle");
+  track.setAttribute("class", "ring-track");
+  track.setAttribute("cx", "22");
+  track.setAttribute("cy", "22");
+  track.setAttribute("r", String(RING_R));
+
+  const fill = document.createElementNS(svgNS, "circle");
+  fill.setAttribute("class", "ring-fill");
+  fill.setAttribute("cx", "22");
+  fill.setAttribute("cy", "22");
+  fill.setAttribute("r", String(RING_R));
+  fill.style.strokeDasharray = String(RING_CIRCUMFERENCE);
+  fill.style.strokeDashoffset = String(RING_CIRCUMFERENCE);
+
+  svg.appendChild(track);
+  svg.appendChild(fill);
+  scrollTopButton.prepend(svg);
+}
+
+function updateScrollTopButton() {
+  if (!scrollTopButton) return;
+
+  const scrollY = window.scrollY;
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+
+  scrollTopButton.classList.toggle("show-scroll", scrollY >= 520);
+
+  const fill = scrollTopButton.querySelector(".ring-fill");
+  if (fill) {
+    fill.style.strokeDashoffset = String(RING_CIRCUMFERENCE * (1 - progress));
+  }
+}
+
+window.addEventListener("scroll", updateScrollTopButton, { passive: true });
+window.addEventListener("load", updateScrollTopButton);
+
+/* ── Mobile menu ── */
+
 function closeMenu() {
   if (!navMenu || !navToggle) return;
   navMenu.classList.remove("show-menu");
   document.body.classList.remove("menu-open");
   navToggle.setAttribute("aria-expanded", "false");
-  navToggle.innerHTML = '<i class="bx bx-menu"></i>';
+  
+  const toggleIcon = navToggle.querySelector("i");
+  if (toggleIcon) {
+    toggleIcon.className = "bx bx-menu";
+  }
 }
 
 if (navToggle && navMenu) {
@@ -25,13 +80,15 @@ if (navToggle && navMenu) {
     const isOpen = navMenu.classList.toggle("show-menu");
     document.body.classList.toggle("menu-open", isOpen);
     navToggle.setAttribute("aria-expanded", String(isOpen));
-    navToggle.innerHTML = isOpen
-      ? '<i class="bx bx-x"></i>'
-      : '<i class="bx bx-menu"></i>';
+    
+    const toggleIcon = navToggle.querySelector("i");
+    if (toggleIcon) {
+      toggleIcon.className = isOpen ? "bx bx-x" : "bx bx-menu";
+    }
   });
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
+    link.addEventListener("click", function () {
       closeMenu();
       isNavigating = true;
       allNavLinks.forEach((nav) => nav.classList.remove("active-link"));
@@ -40,12 +97,12 @@ if (navToggle && navMenu) {
   });
 }
 
+/* ── Active nav link spy ── */
+
 function updateActiveLink() {
   if (isNavigating) return;
 
   const headerH = document.getElementById("header")?.offsetHeight || 72;
-  // FIX: offset must exceed scroll-margin-top (headerH + 28px = ~100px) to correctly
-  // detect which section is active after the browser finishes scrolling to it.
   const scrollY = window.scrollY + headerH + 32;
   const pageBottom =
     window.scrollY + window.innerHeight >= document.body.scrollHeight - 80;
@@ -62,6 +119,10 @@ function updateActiveLink() {
     });
   }
 
+  if (!activeId || activeId === "home") {
+    activeId = "about";
+  }
+
   allNavLinks.forEach((link) => {
     link.classList.toggle(
       "active-link",
@@ -70,7 +131,6 @@ function updateActiveLink() {
   });
 }
 
-// Waits until scrolling fully stops (150ms silence) before re-enabling spy
 window.addEventListener(
   "scroll",
   () => {
@@ -89,15 +149,7 @@ window.addEventListener(
 
 window.addEventListener("load", updateActiveLink);
 
-function updateScrollTopButton() {
-  if (!scrollTopButton) return;
-  scrollTopButton.classList.toggle("show-scroll", window.scrollY >= 520);
-}
-
-window.addEventListener("scroll", updateScrollTopButton, { passive: true });
-window.addEventListener("load", updateScrollTopButton);
-
-/* ── Theme logic (Hardcoded Dark Default) ── */
+/* ── Theme logic ── */
 
 const darkTheme = "dark-theme";
 const iconTheme = "bx-sun";
@@ -117,8 +169,6 @@ themeButton?.addEventListener("click", () => {
     icon.className = isDark ? `bx ${iconTheme}` : "bx bx-moon";
   }
 
-  // Only persist when user deviates from default (light).
-  // When back to dark, remove the key so default takes over on next load.
   if (isDark) {
     localStorage.removeItem("selected-theme");
   } else {
@@ -168,8 +218,7 @@ filterButtons.forEach((btn) => {
 
     const t1 = setTimeout(() => {
       projectCards.forEach((card) => {
-        const match =
-          filter === "all" || card.dataset.category === filter;
+        const match = filter === "all" || card.dataset.category === filter;
         if (match) {
           card.classList.remove("is-hidden");
           card.style.opacity = "0";
@@ -205,10 +254,21 @@ filterButtons.forEach((btn) => {
   });
 });
 
-document.querySelectorAll(".button, .project-filter").forEach((btn) => {
-  btn.addEventListener("pointerup", function (e) {
-    setTimeout(() => {
-      this.blur();
-    }, 150);
+/* ── Secure Email Bot-Defense Engine ── */
+
+const emailBtn = document.getElementById("secure-email");
+if (emailBtn) {
+  emailBtn.addEventListener("click", () => {
+    const user = emailBtn.getAttribute("data-user");
+    const domain = emailBtn.getAttribute("data-domain");
+    window.location.href = `mailto:${user}@${domain}`;
+  });
+}
+
+/* ── Clean Interactive Focus Management ── */
+
+document.querySelectorAll(".button, .project-filter, .nav__link, .theme-toggle, .nav__toggle").forEach((btn) => {
+  btn.addEventListener("pointerup", function () {
+    setTimeout(() => { this.blur(); }, 150);
   });
 });
